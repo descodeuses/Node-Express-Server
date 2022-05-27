@@ -1,0 +1,26 @@
+[
+    {
+        "id": 1,
+        "name": "Bread",
+        "price": 10,
+        "category": "Food"
+    },
+    {
+        "id": 2,
+        "name": "Milk",
+        "price": 24,
+        "category": "Drinks"
+    },
+    {
+        "id": 3,
+        "name": "Coffee",
+        "price": 4,
+        "category": "Drinks"
+    },
+    {
+        "id": 4,
+        "name": "Pizza",
+        "price": 54,
+        "category": "Food"
+    }
+]
