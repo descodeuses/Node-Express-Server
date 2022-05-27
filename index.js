@@ -1,5 +1,7 @@
 const express = require('express');
 
+const axios = require('axios');
+
 const data = require('./data.json');
 
 const port = 5050;
@@ -14,6 +16,7 @@ app.get('/', (req, res) => {
     res.send('Hello World').status(200);
 });
 
+// ENTITY ITEM
 // get all | read all
 app.get('/api/items', (req, res) => {
     res.send(data).status(200);
@@ -62,6 +65,12 @@ app.delete('/api/items/:id', (req, res) => {
         data.splice(data.indexOf(item), 1);
         res.send({ message : "Item successfully deleted !" }).status(200);
     } else res.send('Item not found').status(404);
+});
+
+// ENTITY POST
+app.get('/api/posts', async (req, res) => {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    res.send(response.data).status(200);
 });
 
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
