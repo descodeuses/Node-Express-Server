@@ -1,17 +1,16 @@
-const express = require('express');
-
-const axios = require('axios');
-
 const data = require('./data.json');
-
+const express = require('express');
+const axios = require('axios');
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 const port = 5050;
-
 const app = express();
 
 app.use(express.urlencoded({
     extended: true
 }));
 
+// START ENTRYPOINTS 
 app.get('/', (req, res) => {
     res.send('Hello World').status(200);
 });
@@ -71,6 +70,33 @@ app.delete('/api/items/:id', (req, res) => {
 app.get('/api/posts', async (req, res) => {
     const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
     res.send(response.data).status(200);
+});
+
+// SCRAPING FROM LAPTOP LINUX 
+// https://laptopwithlinux.com/linux-laptops/
+// https://laptopwithlinux.com/mini-computers/ 
+// https://laptopwithlinux.com/accessories/
+app.get('/api/laptops', async (req, res) => {
+    const url = "https://laptopwithlinux.com/linux-laptops/";
+    JSDOM.fromURL(url).then(dom => {
+        const laptopGrid = dom.window.document.getElementById('us_grid_1').querySelectorAll('article');
+        const results = [];
+        laptopGrid.forEach(el => {
+            const item = {};
+            item.title = el.querySelector('h2').textContent;
+            item.image = el.querySelector('img').src;
+            item.price = el.querySelector('bdi').textContent;
+            item.infos = [];
+            const labelInfos = Array.from(el.getElementsByClassName('progress_text'));
+            const textInfos = Array.from(el.getElementsByClassName('progress_info'));
+
+            for (let i = 0; i < textInfos.length; i++) {
+                item.infos.push({ 'label' : labelInfos[i].textContent, 'value' : textInfos[i].textContent })
+            }
+            results.push(item);
+        });
+        res.send(results).status(200);
+    });
 });
 
 app.listen(port, () => console.log(`Server is listening on port ${port}`));
