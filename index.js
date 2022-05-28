@@ -140,21 +140,20 @@ app.get('/api/posts', async (req, res) => {
 
 /*
  * @Route : http://localhost:5050/api/laptops
+ * @Query : ?category=[Laptops, mini-computers, accessories]
  * @Description : Get list of laptops
  * @Method : GET
- * @Note : Scraping `Laptops` & `mini-computers` & `accessories` FROM 
- * [https://laptopwithlinux.com/linux-laptops/ , https://laptopwithlinux.com/mini-computers/ , https://laptopwithlinux.com/accessories/]
+ * @Note : Scraping  FROM [https://laptopwithlinux.com/linux-laptops/ , https://laptopwithlinux.com/mini-computers/ , https://laptopwithlinux.com/accessories/]
  */
 app.get('/api/laptops', async (req, res) => {
-    const url = "https://laptopwithlinux.com/linux-laptops/";
+    const url = 'https://laptopwithlinux.com/' + req.query.category;
     JSDOM.fromURL(url).then(dom => {
         const results = [];
-
         const laptopGrid = dom.window.document.getElementById('us_grid_1').querySelectorAll('article');
         laptopGrid.forEach(el => {
             const item = {};
             item.title = el.querySelector('h2').textContent;
-            item.image = el.querySelector('img').src;
+            item.image = el.querySelector('img').src.replace('cdn.', '');
             item.price = el.querySelector('bdi').textContent;
             item.infos = [];
             const labelInfos = Array.from(el.getElementsByClassName('progress_text'));
