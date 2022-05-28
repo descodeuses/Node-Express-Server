@@ -40,7 +40,7 @@
 * laptops are fetched from https://laptopwithlinux.com with JSDOM & web-scraping:
   - GET list of laptops : http://localhost:5050/api/laptops (query: {catgeory: "all" || "linux-laptops" || "mini-computers" || "accessories"})
 
-## Configuration of the server :
+## Configuration :
 
 ### Express
 > Express is a minimal and flexible Node.js web application framework that provides a robust set of features for web and mobile applications.
@@ -50,10 +50,11 @@
 > JSON (JavaScript Object Notation) is a lightweight data-interchange format.
 > Documentation: https://en.wikipedia.org/wiki/JSON
 
+
 ### Librairies :
 
 - [express](https://expressjs.com/)
 - [nodemon](https://www.npmjs.com/package/nodemon)
 - [axios](https://www.npmjs.com/package/axios)
-- [JSDOM](https://www.npmjs.com/package/jsdom)
+- [jsdom](https://www.npmjs.com/package/jsdom)
   
