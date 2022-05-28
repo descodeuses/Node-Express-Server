@@ -25,20 +25,21 @@
 - visit http://localhost:5050/ ,you should see the following message:
 ```Hello World!```
 
-- visit :
+- What you can do with this server :
+    - GET list of items : http://localhost:5050/api/items
+    - GET item by id : http://localhost:5050/api/items/1 (params: {id: 1})
+    - POST a new item : http://localhost:5050/api/items (body: {name: "new name", price: 10, category: "new category"})
+    - PATCH an item : http://localhost:5050/api/items/1 (body: {name: "new name", &|| price: 10, &|| category: "new category"})
+    - DELETE an item : http://localhost:5050/api/items/1 (params: {id: 1})
+
+    - GET list of posts : http://localhost:5050/api/posts (data fetch from api)
   
-* items are fetched from data.json file :
-  - GET list of items : http://localhost:5050/api/items
-  - GET item by id : http://localhost:5050/api/items/1 (params: {id: 1})
-  - POST a new item : http://localhost:5050/api/items (body: {name: "new name", price: 10, category: "new category"})
-  - PATCH an item : http://localhost:5050/api/items/1 (body: {name: "new name", &|| price: 10, &|| category: "new category"})
-  - DELETE an item : http://localhost:5050/api/items/1 (params: {id: 1})
+    - GET list of laptops : http://localhost:5050/api/laptops (query: {catgeory: "all" || "linux-laptops" || "mini-computers" || "accessories"}) (data fetch from web scraping technique with jsdom library)
 
-* posts are fetched from jsonplaceholder.typicode.com with axios:
-  - GET list of posts : http://localhost:5050/api/posts
-
-* laptops are fetched from https://laptopwithlinux.com with JSDOM & web-scraping:
-  - GET list of laptops : http://localhost:5050/api/laptops (query: {catgeory: "all" || "linux-laptops" || "mini-computers" || "accessories"})
+## Comments :
+All the routes are defined in index.js file.
+Code is written in ES6 and uses ES6 syntax.
+Code is commented with JSDoc style.
 
 ## Configuration :
 
