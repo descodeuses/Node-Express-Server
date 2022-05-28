@@ -4,6 +4,7 @@
 const data = require('./data.json');
 const express = require('express');
 const axios = require('axios');
+const cors = require('cors');
 const jsdom = require("jsdom");
 
 /**
@@ -11,6 +12,11 @@ const jsdom = require("jsdom");
  */
 const port = 5050;
 const app = express();
+
+/**
+ * @note: use cors middleware to allow cross-origin requests
+ */
+app.use(cors('*'));
 
 /**
  * @note: configure express
