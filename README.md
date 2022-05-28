@@ -25,10 +25,14 @@
 
 ### Usage :
 
-- visit http://localhost:5050/ ,you should see the following message:
-```Hello World!```
+- server allows all origins (CORS)
 
-- What you can do with this server :
+- server allows all HTTP methods
+
+- visit http://localhost:5050 to getting welcome message : ```Hello World!```
+
+- server allows you to access the API with the following endpoints:
+
     - GET list of items : http://localhost:5050/api/items
     - GET item by id : http://localhost:5050/api/items/1 (params: {id: 1})
     - POST a new item : http://localhost:5050/api/items (body: {name: "new name", price: 10, category: "new category"})
@@ -41,7 +45,7 @@
 
 ### Comments :
 All the routes are defined in index.js file.
-Code is written in ES6 and uses ES6 syntax.
+Code uses ES6 syntax.
 Code is commented with JSDoc style.
 
 ### Configuration :
@@ -56,9 +60,9 @@ Code is commented with JSDoc style.
 
 
 #### Librairies :
-
 - [express](https://expressjs.com/)
 - [nodemon](https://www.npmjs.com/package/nodemon)
+- [cors](https://www.npmjs.com/package/cors)
 - [axios](https://www.npmjs.com/package/axios)
 - [jsdom](https://www.npmjs.com/package/jsdom)
   
