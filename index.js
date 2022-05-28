@@ -72,15 +72,16 @@ app.get('/api/posts', async (req, res) => {
     res.send(response.data).status(200);
 });
 
-// SCRAPING FROM LAPTOP LINUX 
+// SCRAPING `Laptops` & `mini-computers` & `accessories` FROM 
 // https://laptopwithlinux.com/linux-laptops/
 // https://laptopwithlinux.com/mini-computers/ 
 // https://laptopwithlinux.com/accessories/
 app.get('/api/laptops', async (req, res) => {
     const url = "https://laptopwithlinux.com/linux-laptops/";
     JSDOM.fromURL(url).then(dom => {
-        const laptopGrid = dom.window.document.getElementById('us_grid_1').querySelectorAll('article');
         const results = [];
+
+        const laptopGrid = dom.window.document.getElementById('us_grid_1').querySelectorAll('article');
         laptopGrid.forEach(el => {
             const item = {};
             item.title = el.querySelector('h2').textContent;
